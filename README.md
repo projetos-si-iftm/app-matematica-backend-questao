@@ -118,7 +118,7 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 - **Descrição**: Retorna uma categoria pelo ID.
 - **Parâmetros**:
-  - [id_categoria](http://_vscodecontentref_/1) (UUID): ID da categoria.
+  - `id_categoria` (UUID): ID da categoria.
 - **Resposta**:
   - Status: 200 OK
   - Corpo da Resposta:
@@ -133,7 +133,7 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 - **Descrição**: Cria uma nova categoria.
 - **Corpo da Requisição**:
-  - [CategoriaDTO](http://_vscodecontentref_/2): Objeto contendo os dados da categoria.
+  - `CategoriaDTO`: Objeto contendo os dados da categoria.
   - Exemplo de Requisição:
     ```json
     {
@@ -154,7 +154,7 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 - **Descrição**: Deleta uma categoria pelo ID.
 - **Parâmetros**:
-  - [id_categoria](http://_vscodecontentref_/3) (UUID): ID da categoria.
+  - `id_categoria` (UUID): ID da categoria.
 - **Resposta**:
   - Status: 200 OK
   - Corpo da Resposta:
@@ -169,9 +169,9 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 - **Descrição**: Atualiza uma categoria pelo ID.
 - **Parâmetros**:
-  - [id_categoria](http://_vscodecontentref_/4) (UUID): ID da categoria.
+  - `id_categoria` (UUID): ID da categoria.
 - **Corpo da Requisição**:
-  - [CategoriaDTO](http://_vscodecontentref_/5): Objeto contendo os dados atualizados da categoria.
+  - `CategoriaDTO` : Objeto contendo os dados atualizados da categoria.
   - Exemplo de Requisição:
     ```json
     {
@@ -189,7 +189,7 @@ A aplicação estará disponível em `http://localhost:8080`.
     ```
     ## Questao
 
-    ### POST /manage/question
+### POST /manage/question
 
 - **Descrição**: Cria uma nova questão.
 - **Corpo da Requisição**:
@@ -234,7 +234,7 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 - **Descrição**: Retorna uma questão pelo ID.
 - **Parâmetros**:
-  - [id_questao](http://_vscodecontentref_/1) (UUID): ID da questão.
+  - `id_questao` (UUID): ID da questão.
 - **Resposta**:
   - Status: 200 OK
   - Corpo da Resposta:
@@ -284,7 +284,7 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 - **Descrição**: Retorna questões por categoria.
 - **Parâmetros**:
-  - [id_categoria](http://_vscodecontentref_/2) (UUID): ID da categoria.
+  - `id_categoria` (UUID): ID da categoria.
 - **Resposta**:
   - Status: 200 OK
   - Corpo da Resposta:
@@ -311,8 +311,8 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 - **Descrição**: Retorna questões por categoria e dificuldade.
 - **Parâmetros**:
-  - [id_categoria](http://_vscodecontentref_/3) (UUID): ID da categoria.
-  - [dificuldade](http://_vscodecontentref_/4) (int): Nível de dificuldade da questão.
+  - `id_categoria` (UUID): ID da categoria.
+  - `dificuldade` (int): Nível de dificuldade da questão.
 - **Resposta**:
   - Status: 200 OK
   - Corpo da Resposta:
@@ -339,8 +339,8 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 - **Descrição**: Retorna questões aleatórias por categoria e dificuldade.
 - **Parâmetros**:
-  - [id_categoria](http://_vscodecontentref_/5) (UUID): ID da categoria.
-  - [dificuldade](http://_vscodecontentref_/6) (int): Nível de dificuldade da questão.
+  - `id_categoria` (UUID): ID da categoria.
+  - `dificuldade` (int): Nível de dificuldade da questão.
 - **Resposta**:
   - Status: 200 OK
   - Corpo da Resposta:
