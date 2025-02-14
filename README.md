@@ -29,6 +29,8 @@ src/
 │   │       └── edu/
 │   │           └── iftm/
 │   │               └── app_ensino_matematica_backend_questao/
+│   │                   ├── config/
+│   │                   │   └── WebConfig.java
 │   │                   ├── controller/
 │   │                   │   └── QuestaoController.java
 │   │                   │   └── CategoriaController.java
@@ -37,17 +39,14 @@ src/
 │   │                   │   ├── Categoria.java
 │   │                   │   ├── Questao.java
 │   │                   │   └── DTO/
-│   │                   │       ├── AlternativaDTO.java
-│   │                   │       ├── CategoriaDTO.java
+│   │                   │       └── CategoriaDTO.java
 │   │                   │       └── QuestaoDTO.java
 │   │                   ├── repository/
-│   │                   │   ├── AlternativaRepository.java
-│   │                   │   │   ├── CategoriaRepository.java
-│   │                   │   └── QuestaoRepository.java
+│   │                   │      └── CategoriaRepository.java
+│   │                   │      └── QuestaoRepository.java
 │   │                   ├── service/
-│   │                   │   ├── CategoriaService.java
-│   │                   │   ├── QuestaoService.java
-│   │                   │   └── SequenceGeneratorService.java
+│   │                   │      └── CategoriaService.java
+│   │                   │      └── QuestaoService.java
 │   │                   └── AppEnsinoMatematicaBackendQuestaoApplication.java
 │   └── resources/
 │       ├── application.yml
@@ -199,14 +198,13 @@ A aplicação estará disponível em `http://localhost:8080`.
     {
       "titulo": "Qual é a raiz quadrada de 16?",
       "enunciado": "Calcule a raiz quadrada de 16.",
-      "imagem": null,
+      "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
       "dificuldade": 1,
       "alternativa": [
         {"resposta": "2", "correta": false},
         {"resposta": "4", "correta": true},
         {"resposta": "8", "correta": false}
       ],
-      "resposta_correta": "4",
       "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557"}]
     }
     ```
@@ -218,14 +216,13 @@ A aplicação estará disponível em `http://localhost:8080`.
       "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
       "titulo": "Qual é a raiz quadrada de 16?",
       "enunciado": "Calcule a raiz quadrada de 16.",
-      "imagem": null,
+      "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
       "dificuldade": 1,
       "alternativa": [
-        {"id_alternativa": "4e9f2350-7530-4918-a05b-32b4da555560", "resposta": "2", "correta": false},
-        {"id_alternativa": "5f9f2350-7530-4918-a05b-32b4da555561", "resposta": "4", "correta": true},
-        {"id_alternativa": "6g9f2350-7530-4918-a05b-32b4da555562", "resposta": "8", "correta": false}
+        {"resposta": "2", "correta": false},
+        {"resposta": "4", "correta": true},
+        {"resposta": "8", "correta": false}
       ],
-      "resposta_correta": "4",
       "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
     }
     ```
@@ -243,14 +240,13 @@ A aplicação estará disponível em `http://localhost:8080`.
       "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
       "titulo": "Qual é a raiz quadrada de 16?",
       "enunciado": "Calcule a raiz quadrada de 16.",
-      "imagem": null,
+      "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
       "dificuldade": 1,
       "alternativa": [
-        {"id_alternativa": "4e9f2350-7530-4918-a05b-32b4da555560", "resposta": "2", "correta": false},
-        {"id_alternativa": "5f9f2350-7530-4918-a05b-32b4da555561", "resposta": "4", "correta": true},
-        {"id_alternativa": "6g9f2350-7530-4918-a05b-32b4da555562", "resposta": "8", "correta": false}
+        {"resposta": "2", "correta": false},
+        {"resposta": "4", "correta": true},
+        {"resposta": "8", "correta": false}
       ],
-      "resposta_correta": "4",
       "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
     }
     ```
@@ -267,12 +263,12 @@ A aplicação estará disponível em `http://localhost:8080`.
         "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
         "titulo": "Qual é a raiz quadrada de 16?",
         "enunciado": "Calcule a raiz quadrada de 16.",
-        "imagem": null,
+        "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
         "dificuldade": 1,
         "alternativa": [
-          {"id_alternativa": "4e9f2350-7530-4918-a05b-32b4da555560", "resposta": "2", "correta": false},
-          {"id_alternativa": "5f9f2350-7530-4918-a05b-32b4da555561", "resposta": "4", "correta": true},
-          {"id_alternativa": "6g9f2350-7530-4918-a05b-32b4da555562", "resposta": "8", "correta": false}
+          {"resposta": "2", "correta": false},
+          {"resposta": "4", "correta": true},
+          {"resposta": "8", "correta": false}
         ],
         "resposta_correta": "4",
         "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
@@ -294,14 +290,13 @@ A aplicação estará disponível em `http://localhost:8080`.
         "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
         "titulo": "Qual é a raiz quadrada de 16?",
         "enunciado": "Calcule a raiz quadrada de 16.",
-        "imagem": null,
+        "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
         "dificuldade": 1,
         "alternativa": [
-          {"id_alternativa": "4e9f2350-7530-4918-a05b-32b4da555560", "resposta": "2", "correta": false},
-          {"id_alternativa": "5f9f2350-7530-4918-a05b-32b4da555561", "resposta": "4", "correta": true},
-          {"id_alternativa": "6g9f2350-7530-4918-a05b-32b4da555562", "resposta": "8", "correta": false}
+          {"resposta": "2", "correta": false},
+          {"resposta": "4", "correta": true},
+          {"resposta": "8", "correta": false}
         ],
-        "resposta_correta": "4",
         "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
       }
     ]
@@ -322,14 +317,13 @@ A aplicação estará disponível em `http://localhost:8080`.
         "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
         "titulo": "Qual é a raiz quadrada de 16?",
         "enunciado": "Calcule a raiz quadrada de 16.",
-        "imagem": null,
+        "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
         "dificuldade": 1,
         "alternativa": [
-          {"id_alternativa": "4e9f2350-7530-4918-a05b-32b4da555560", "resposta": "2", "correta": false},
-          {"id_alternativa": "5f9f2350-7530-4918-a05b-32b4da555561", "resposta": "4", "correta": true},
-          {"id_alternativa": "6g9f2350-7530-4918-a05b-32b4da555562", "resposta": "8", "correta": false}
+          {"resposta": "2", "correta": false},
+          {"resposta": "4", "correta": true},
+          {"resposta": "8", "correta": false}
         ],
-        "resposta_correta": "4",
         "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
       }
     ]
@@ -350,14 +344,13 @@ A aplicação estará disponível em `http://localhost:8080`.
         "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
         "titulo": "Qual é a raiz quadrada de 16?",
         "enunciado": "Calcule a raiz quadrada de 16.",
-        "imagem": null,
+        "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
         "dificuldade": 1,
         "alternativa": [
-          {"id_alternativa": "4e9f2350-7530-4918-a05b-32b4da555560", "resposta": "2", "correta": false},
-          {"id_alternativa": "5f9f2350-7530-4918-a05b-32b4da555561", "resposta": "4", "correta": true},
-          {"id_alternativa": "6g9f2350-7530-4918-a05b-32b4da555562", "resposta": "8", "correta": false}
+          {"resposta": "2", "correta": false},
+          {"resposta": "4", "correta": true},
+          {"resposta": "8", "correta": false}
         ],
-        "resposta_correta": "4",
         "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
       }
     ]
