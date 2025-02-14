@@ -5,6 +5,7 @@ Este é o backend de um aplicativo de ensino de matemática feito para a comunid
 ## Sumário
 
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Documentação MongoDB (NoSQL)] 
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Configuração do Ambiente](#configuração-do-ambiente)
 - [Instalação e Execução](#instalação-e-execução)
@@ -20,13 +21,34 @@ Este é o backend de um aplicativo de ensino de matemática feito para a comunid
 - Maven
 
 ## Documentação MongoDB (NoSQL)
-![Uploading image.png…]()
 
-### Por que utilizar um banco NOSQL?
+```bash
+{
+  "id_questao": UUID,
+  "titulo": String,
+  "enunciado": String,
+  "imagem": String,
+  "dificuldade": int,
+  "alternativa": [
+    {
+      "resposta": String,
+      "correta": Boolean
+    }
+  ],
+  "categoria": [
+    {
+      "id_categoria": UUID,
+      "nome": String
+    }
+  ]
+}
+```
+### Por que utilizar MongoDB (banco NOSQL)?
 - MongoDB oferece uma abordagem de consulta direta, usando filtros baseados em JSON ou BSON. Isso significa que você pode fazer buscas de maneira simples, sem a complexidade das joins de bancos SQL.
 - No MongoDB, você pode armazenar dados sem se preocupar com a criação de muitas tabelas ou coleções adicionais, como ocorre em bancos relacionais para normalização. A estrutura de dados no MongoDB (documentos JSON) já permite agrupar informações relacionadas em um único documento, sem a necessidade de muitas referências ou tabelas extras.
 - MongoDB é altamente flexível quando se trata de salvar dados. Não há necessidade de seguir um esquema fixo. Se você quiser adicionar novos campos ou novos tipos de dados (por exemplo, um novo tipo de pergunta ou uma nova categoria), você pode fazer isso sem grandes mudanças ou migrações no banco de dados. Isso permite que você se adapte rapidamente a novos requisitos ou alterações no modelo de dadoS.
 - MongoDB é projetado para otimizar o desempenho em grandes volumes de dados, especialmente quando se trata de leitura e gravação rápidas. Ele oferece recursos como índices para acelerar as buscas, o que é essencial em sistemas que lidam com muitos documentos, como um banco de questões.
+- Não há a necessidade de criar uma coleção adicional denominada "alternativa", otimizando a performance da busca de dados presentes no banco, por não necessitar criar uma nova coleção, e consequentemente um novo id.
 
 ## Estrutura do projeto
 
