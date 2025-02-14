@@ -22,7 +22,6 @@ public class Questao {
     private String imagem;
     private int dificuldade; //1 = fácil, 2 = médio, 3 = difícil
     private List<Alternativa> alternativa;
-    private String resposta_correta; 
     private List<Categoria> categoria;
 
 

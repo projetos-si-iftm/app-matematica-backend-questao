@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import br.edu.iftm.app_ensino_matematica_backend_questao.model.Questao;
 
 import br.edu.iftm.app_ensino_matematica_backend_questao.model.DTO.QuestaoDTO;
-import br.edu.iftm.app_ensino_matematica_backend_questao.repository.AlternativaRepository;
 import br.edu.iftm.app_ensino_matematica_backend_questao.repository.QuestaoRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -17,20 +16,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuestaoService {
     private final QuestaoRepository questaoRepository;
-    private final AlternativaRepository alternativaRepository;
+    // private final AlternativaRepository alternativaRepository;
     private final CategoriaService categoriaService;
 
     public QuestaoDTO save(QuestaoDTO questaoDTO) {
         Questao questao = QuestaoDTO.convertToEntity(questaoDTO, categoriaService);
         questao.setId_questao(UUID.randomUUID()); // Gerar UUID para a questão
-
-        // Gerar número aleatório e salvar cada alternativa
-        if (questao.getAlternativa() != null) {
-            questao.setAlternativa(questao.getAlternativa().stream().map(alternativa -> {
-                alternativa.setId_alternativa(UUID.randomUUID()); // Gerar um número aleatório Long
-                return alternativaRepository.save(alternativa);
-            }).collect(Collectors.toList()));
-        }
         questao = questaoRepository.save(questao);
         return QuestaoDTO.convert(questao);
     }
