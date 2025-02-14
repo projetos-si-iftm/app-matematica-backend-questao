@@ -48,7 +48,7 @@ Este é o backend de um aplicativo de ensino de matemática feito para a comunid
 - No MongoDB, você pode armazenar dados sem se preocupar com a criação de muitas tabelas ou coleções adicionais, como ocorre em bancos relacionais para normalização. A estrutura de dados no MongoDB (documentos JSON) já permite agrupar informações relacionadas em um único documento, sem a necessidade de muitas referências ou tabelas extras.
 - MongoDB é altamente flexível quando se trata de salvar dados. Não há necessidade de seguir um esquema fixo. Se você quiser adicionar novos campos ou novos tipos de dados (por exemplo, um novo tipo de pergunta ou uma nova categoria), você pode fazer isso sem grandes mudanças ou migrações no banco de dados. Isso permite que você se adapte rapidamente a novos requisitos ou alterações no modelo de dadoS.
 - MongoDB é projetado para otimizar o desempenho em grandes volumes de dados, especialmente quando se trata de leitura e gravação rápidas. Ele oferece recursos como índices para acelerar as buscas, o que é essencial em sistemas que lidam com muitos documentos, como um banco de questões.
-- Não há a necessidade de criar uma coleção adicional denominada "alternativa", otimizando a performance da busca de dados presentes no banco, por não necessitar criar uma nova coleção, e consequentemente um novo id.
+-  Otimização da performance da busca de dados presentes no banco, pelo fato de não haver necessidade de uma coleção com base na classe "Alternativa", e consequentemente um novo id, aumentando a velocidade da resposta.
 
 ## Estrutura do projeto
 
