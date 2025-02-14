@@ -22,7 +22,7 @@ public interface QuestaoRepository extends MongoRepository<Questao, UUID> {
 
         @Aggregation(pipeline = {
         "{ '$match': { 'categoria.id_categoria': ?0, 'dificuldade': ?1 } }",
-        "{ '$sample': { 'size': 5 } }"
+        "{ '$sample': { 'size': 3 } }"
     })
     List<Questao> findRandomByCategoriaIdAndDificuldade(UUID id_categoria, int dificuldade);
 }
