@@ -43,6 +43,11 @@ Este é o backend de um aplicativo de ensino de matemática feito para a comunid
   ]
 }
 ```
+
+Exemplo de questão:
+![Flowchart (5)](https://github.com/user-attachments/assets/e3f9e27a-1210-4a2a-ba85-6b5c53862fea)
+
+
 ### Por que utilizar MongoDB (banco NOSQL)?
 - MongoDB oferece uma abordagem de consulta direta, usando filtros baseados em JSON ou BSON. Isso significa que você pode fazer buscas de maneira simples, sem a complexidade das joins de bancos SQL.
 - No MongoDB, você pode armazenar dados sem se preocupar com a criação de muitas tabelas ou coleções adicionais, como ocorre em bancos relacionais para normalização. A estrutura de dados no MongoDB (documentos JSON) já permite agrupar informações relacionadas em um único documento, sem a necessidade de muitas referências ou tabelas extras.
