@@ -4,3 +4,5 @@ spring:
     mongodb:
       uri: mongodb+srv://professor:coxinha123@app-matematica.5bpla.mongodb.net/
       database: app-ensino-matematica-backend-questao
+app:
+  base-url: http://localhost:8080

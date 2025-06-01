@@ -8,6 +8,7 @@ import br.edu.iftm.app_ensino_matematica_backend_questao.model.Alternativa;
 import br.edu.iftm.app_ensino_matematica_backend_questao.model.Categoria;
 import br.edu.iftm.app_ensino_matematica_backend_questao.model.Questao;
 import br.edu.iftm.app_ensino_matematica_backend_questao.service.CategoriaService;
+import br.edu.iftm.app_ensino_matematica_backend_questao.service.UrlBuilderService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,12 +25,13 @@ public class QuestaoDTO {
     private List<Alternativa> alternativa;
     private List<CategoriaDTO> categoria;
 
-    public static QuestaoDTO convert(Questao questao) {
+    public static QuestaoDTO convert(Questao questao, UrlBuilderService urlBuilderService) {
         QuestaoDTO questaoDTO = new QuestaoDTO();
         questaoDTO.setId_questao(questao.getId_questao());
         questaoDTO.setTitulo(questao.getTitulo());
         questaoDTO.setEnunciado(questao.getEnunciado());
-        questaoDTO.setImagem(questao.getImagem());
+        questaoDTO.setImagem(urlBuilderService.buildImageUrl(questao.getImagem()));
+        // questaoDTO.setImagem(questao.getImagem());
         questaoDTO.setDificuldade(questao.getDificuldade());
         questaoDTO.setAlternativa(questao.getAlternativa());
         questaoDTO.setCategoria(questao.getCategoria().stream().map(CategoriaDTO::convert).collect(Collectors.toList()));
