@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/app_ensino_matematica_backend_questao-0.0.1-SNAPSHOT.jar

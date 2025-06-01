@@ -5,4 +5,4 @@ spring:
       uri: mongodb+srv://professor:coxinha123@app-matematica.5bpla.mongodb.net/
       database: app-ensino-matematica-backend-questao
 app:
-  base-url: http://localhost:8080
+  base-url: ${BASE_URL:https://app-matematica-questao-me-7fb5fa8a60ff.herokuapp.com}
