@@ -1,8 +1,18 @@
 # spring.application.name=app_ensino_matematica_backend_questao
 spring:
+  application:
+    name: questao
   data:
     mongodb:
       uri: mongodb+srv://professor:coxinha123@app-matematica.5bpla.mongodb.net/
       database: app-ensino-matematica-backend-questao
 app:
   base-url: ${BASE_URL:https://app-matematica-questao-me-7fb5fa8a60ff.herokuapp.com}
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka/
+        fetch-registry: true
+        register-with-eureka: true
+        instance:
+            prefer-ip-address: true
