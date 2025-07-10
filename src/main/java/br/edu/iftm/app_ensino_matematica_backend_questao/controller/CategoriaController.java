@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dtos.CategoriaDTO;
+
 import br.edu.iftm.app_ensino_matematica_backend_questao.model.Categoria;
-import br.edu.iftm.app_ensino_matematica_backend_questao.model.DTO.CategoriaDTO;
 import br.edu.iftm.app_ensino_matematica_backend_questao.service.CategoriaService;
 import lombok.RequiredArgsConstructor;
 

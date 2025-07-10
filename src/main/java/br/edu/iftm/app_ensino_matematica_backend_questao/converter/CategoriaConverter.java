@@ -1,19 +1,11 @@
-package br.edu.iftm.app_ensino_matematica_backend_questao.model.DTO;
+package br.edu.iftm.app_ensino_matematica_backend_questao.converter;
 
-import java.util.UUID;
+import com.example.dtos.CategoriaDTO;
 
 import br.edu.iftm.app_ensino_matematica_backend_questao.model.Categoria;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class CategoriaDTO {
-    private UUID id_categoria;
-    private String nome;
-
+public class CategoriaConverter {
+    
     public static CategoriaDTO convert(Categoria categoria) {
         CategoriaDTO categoriaDTO = new CategoriaDTO();
         categoriaDTO.setId_categoria(categoria.getId_categoria());
