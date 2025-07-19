@@ -52,6 +52,8 @@ public class QuestaoController {
         return questaoService.save(questaoDTO);
     }
 
+    
+
     @GetMapping("/{id_questao}")
     @ResponseStatus(HttpStatus.OK)
     public QuestaoDTO findById(@PathVariable UUID id_questao) {
