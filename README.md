@@ -1,6 +1,6 @@
-# App Ensino Matemática Backend Questão
+# App Ensino Matemática Backend Questão - Socratic
 
-Este é o backend de um aplicativo de ensino de matemática feito para a comunidade externa. Ele é responsável por gerenciar questões, alternativas e categorias. 
+Este é o backend do aplicativo de ensino de matemática Socratic, feito para a comunidade externa. Ele é responsável por gerenciar questões, alternativas e categorias. 
 
 O sistema é composto por múltiplos microsserviços que se complementam, incluindo os serviços de 👉 [resposta](https://github.com/projetos-si-iftm/app-matematica-backend-resposta) e 👉 [usuários](https://github.com/projetos-si-iftm/app-matematica-backend), responsáveis respectivamente pelo gerenciamento do banco de respostas e gerenciamento do ranking dos alunos, e pelo gerenciamento das informações dos alunos, professores e turma.
 
