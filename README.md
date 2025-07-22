@@ -4,13 +4,26 @@ Este é o backend de um aplicativo de ensino de matemática feito para a comunid
 
 O sistema é composto por múltiplos microsserviços que se complementam, incluindo os serviços de 👉 [resposta](https://github.com/projetos-si-iftm/app-matematica-backend-resposta) e 👉 [usuários](https://github.com/projetos-si-iftm/app-matematica-backend), responsáveis respectivamente pelo gerenciamento do banco de respostas e gerenciamento do ranking dos alunos, e pelo gerenciamento das informações dos alunos, professores e turma.
 
+- [Repositório do Aplicativo Socratic - Aluno](https://github.com/projetos-si-iftm/app-matematica-frontend)
+  
+- [Repositório da Interface Web - Professor](https://github.com/projetos-si-iftm/app-matematica-frontend-professor)
+
 ## Sumário
 
+- [Contribuidores](#contribuidores)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Configuração do Ambiente](#configuração-do-ambiente)
 - [Endpoints](#endpoints)
 - [Licença](#licença)
+
+# Contribuidores
+
+- [@fromanoel](https://github.com/fromanoel) – Backend: desenvolvimento e integração dos microsserviços, configuração do Gateway e do Eureka Server, e organização da documentação com Swagger.
+- [@madu-silva](https://github.com/madu-silva) – Backend: integração com Firebase, geração do token JWT.
+- [IsabelaQM](https://github.com/IsabelaQM) – Frontend: desenvolvimento da aplicação em React e React Native.
+- [@samylledutra](https://github.com/samylledutra) – Frontend: desenvolvimento da aplicação em React e React Native.
+- [@stclaire1](https://github.com/stclaire1) – Frontend: desenvolvimento da aplicação em React e React Native.
 
 # Tecnologias Utilizadas
 
