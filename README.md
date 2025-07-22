@@ -1,52 +1,40 @@
 # App Ensino Matemática Backend Questão
 
-Este é o backend de um aplicativo de ensino de matemática feito para a comunidade externa, responsável por gerenciar questões, alternativas e categorias. 
+Este é o backend de um aplicativo de ensino de matemática feito para a comunidade externa. Ele é responsável por gerenciar questões, alternativas e categorias. 
+
+O sistema é composto por múltiplos microsserviços que se complementam, incluindo os serviços de 👉 [resposta](https://github.com/projetos-si-iftm/app-matematica-backend-resposta) e 👉 [usuários](https://github.com/projetos-si-iftm/app-matematica-backend), responsáveis respectivamente pelo gerenciamento do banco de respostas e gerenciamento do ranking dos alunos, e pelo gerenciamento das informações dos alunos, professores e turma.
 
 ## Sumário
 
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Documentação MongoDB (NoSQL)] 
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Configuração do Ambiente](#configuração-do-ambiente)
-- [Instalação e Execução](#instalação-e-execução)
 - [Endpoints](#endpoints)
 - [Licença](#licença)
 
-## Tecnologias Utilizadas
+# Tecnologias Utilizadas
 
 - Java 17
 - Spring Boot 3.0
-- MongoDB
+- Spring Data MongoDB
 - Lombok
-- Maven
 
-## Documentação MongoDB (NoSQL)
+## Microsserviços e Infraestrutura
+- Spring Cloud Gateway
+- Eureka Server
 
-```bash
-{
-  "id_questao": UUID,
-  "titulo": String,
-  "enunciado": String,
-  "imagem": String,
-  "dificuldade": int,
-  "alternativa": [
-    {
-      "resposta": String,
-      "correta": Boolean
-    }
-  ],
-  "categoria": [
-    {
-      "id_categoria": UUID,
-      "nome": String
-    }
-  ]
-}
-```
+## Biblioteca Compartilhada DTO's
 
-Exemplo de questão:
-![Flowchart (5)](https://github.com/user-attachments/assets/e3f9e27a-1210-4a2a-ba85-6b5c53862fea)
+Este projeto utiliza uma biblioteca compartilhada de DTOs desenvolvida especialmente para padronizar a comunicação entre os microsserviços do sistema.
+Essa biblioteca contém as classes de transferência de dados (DTOs) utilizadas por todos os serviços — como usuário, questão e resposta — garantindo consistência nas trocas de informações e facilitando a manutenção.
 
+👉 [Repositório da biblioteca de DTO's](https://github.com/fromanoel/app-matematica-dtos)
+
+## Documentação 
+- Swagger (OpenAPI)
+
+## Banco de Dados
+- MongoDB
 
 ### Por que utilizar MongoDB (banco NOSQL)?
 - MongoDB oferece uma abordagem de consulta direta, usando filtros baseados em JSON ou BSON. Isso significa que você pode fazer buscas de maneira simples, sem a complexidade das joins de bancos SQL.
@@ -57,47 +45,57 @@ Exemplo de questão:
 
 ## Estrutura do projeto
 
+O projeto está organizado nas seguintes pastas:
+
+- `controller`: Contém os controladores REST que expõem os endpoints da API.
+- `model`: Contém as classes de modelo que representam os dados.
+- `repository`: Contém as interfaces de repositório para acesso ao banco de dados.
+- `service`: Contém as classes de serviço que implementam a lógica de negócios.
+- `converter`: Contém a lógica de conversão dos DTO's para Models, e vice-versa.
+- `config`: Contém a configuração da documentação do Swagger (OpenAPI).
+
+
 ```bash
-src/
-├── main/
-│   ├── java/
-│   │   └── br/
-│   │       └── edu/
-│   │           └── iftm/
-│   │               └── app_ensino_matematica_backend_questao/
-│   │                   ├── config/
-│   │                   │   └── WebConfig.java
-│   │                   ├── controller/
-│   │                   │   └── QuestaoController.java
-│   │                   │   └── CategoriaController.java
-│   │                   ├── model/
-│   │                   │   ├── Alternativa.java
-│   │                   │   ├── Categoria.java
-│   │                   │   ├── Questao.java
-│   │                   │   └── DTO/
-│   │                   │       └── CategoriaDTO.java
-│   │                   │       └── QuestaoDTO.java
-│   │                   ├── repository/
-│   │                   │      └── CategoriaRepository.java
-│   │                   │      └── QuestaoRepository.java
-│   │                   ├── service/
-│   │                   │      └── CategoriaService.java
-│   │                   │      └── QuestaoService.java
-│   │                   └── AppEnsinoMatematicaBackendQuestaoApplication.java
-│   └── resources/
-│       ├── application.yml
-│       
-│           
-└── test/
-    └── java/
-        └── br/
-            └── edu/
-                └── iftm/
-                    └── app_ensino_matematica_backend_questao/
-                        └── AppEnsinoMatematicaBackendQuestaoApplicationTests.java
++---main
+|   +---java
+|   |   \---br
+|   |       \---edu
+|   |           \---iftm
+|   |               \---app_ensino_matematica_backend_questao
+|   |                   |   AppEnsinoMatematicaBackendQuestaoApplication.java
+|   |                   |   
+|   |                   +---config
+|   |                   |       SwaggerConfig.java
+|   |                   |       
+|   |                   +---controller
+|   |                   |       CategoriaController.java
+|   |                   |       ImagemController.java
+|   |                   |       QuestaoController.java
+|   |                   |       
+|   |                   +---converter
+|   |                   |       CategoriaConverter.java
+|   |                   |       DTOConverter.java
+|   |                   |       
+|   |                   +---model
+|   |                   |       Alternativa.java
+|   |                   |       Categoria.java
+|   |                   |       Questao.java
+|   |                   |       
+|   |                   +---repository
+|   |                   |       AlternativaRepository.java
+|   |                   |       CategoriaRepository.java
+|   |                   |       QuestaoRepository.java
+|   |                   |
+|   |                   \---service
+|   |                           CategoriaService.java
+|   |                           QuestaoService.java
+|   |                           UrlBuilderService.java
+|   |
+|   \---resources
+|           application.yml
 ```
 
-## Configuração do Ambiente
+# Configuração do Ambiente
 
 ### Pré-requisitos
 
@@ -105,295 +103,40 @@ src/
 - Maven 3.6 ou superior
 - MongoDB
 
-### Instalação e Execução
+## Instalação e Execução
 
-1. Clone o repositório:
+### Clone o repositório:
 
    ```bash
    git clone https://github.com/seu-usuario/app_ensino_matematica_backend_questao.git
    cd app_ensino_matematica_backend_questao
+```
 
-2. Instale as dependências:
-   ```bash
-   mvn install
-   
-3. Configuração do MongoDB
-Certifique-se de que o MongoDB esteja em execução e configurado corretamente. Você pode ajustar as configurações de conexão no arquivo `application.properties`.
+### Configuração do MongoDB
+Certifique-se de que o MongoDB esteja em execução e configurado corretamente. Você pode ajustar as configurações de conexão no arquivo `application.yml`.
+ 
+### Compilação e Execução
 
-4. Execute a aplicação:
-   ```bash
-   mvn spring-boot:run
-   
-A aplicação estará disponível em `http://localhost:8080`.
+Antes de iniciar este serviço, certifique-se de que os seguintes projetos estejam rodando:
+
+[Eureka Server](https://github.com/projetos-si-iftm/app-matematica-eureka) - responsável pelo service discovery
+
+[Gateway](https://github.com/projetos-si-iftm/app-matematica-backend-gateway) - responsável pelo roteamento das requisições
+
+Para compilar e executar o projeto, use os seguintes comandos:
+
+```bash
+mvn clean install
+mvn spring-boot:run
+```
 
 # Endpoints
 
-## Categoria
+A documentação completa está disponível via Swagger
+👉 [Acesse a documentação Swagger aqui](https://app-matematica-backend-questao-3a364d6ca0e2.herokuapp.com/swagger-ui/index.html)
 
-### GET /manage/category
+# Licença
 
-- **Descrição**: Retorna todas as categorias.
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    [
-      {
-        "id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557",
-        "nome": "Álgebra"
-      },
-      {
-        "id_categoria": "2c8f2350-7530-4918-a05b-32b4da555558",
-        "nome": "Geometria"
-      }
-    ]
-    ```
-
-### GET /manage/category/{id_categoria}
-
-- **Descrição**: Retorna uma categoria pelo ID.
-- **Parâmetros**:
-  - `id_categoria` (UUID): ID da categoria.
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    {
-      "id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557",
-      "nome": "Álgebra"
-    }
-    ```
-
-### POST /manage/category
-
-- **Descrição**: Cria uma nova categoria.
-- **Corpo da Requisição**:
-  - `CategoriaDTO`: Objeto contendo os dados da categoria.
-  - Exemplo de Requisição:
-    ```json
-    {
-      "nome": "Trigonometria"
-    }
-    ```
-- **Resposta**:
-  - Status: 201 Created
-  - Corpo da Resposta:
-    ```json
-    {
-      "id_categoria": "3d9f2350-7530-4918-a05b-32b4da555559",
-      "nome": "Trigonometria"
-    }
-    ```
-
-### DELETE /manage/category/{id_categoria}
-
-- **Descrição**: Deleta uma categoria pelo ID.
-- **Parâmetros**:
-  - `id_categoria` (UUID): ID da categoria.
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    {
-      "id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557",
-      "nome": "Álgebra"
-    }
-    ```
-
-### PATCH /manage/category/{id_categoria}
-
-- **Descrição**: Atualiza uma categoria pelo ID.
-- **Parâmetros**:
-  - `id_categoria` (UUID): ID da categoria.
-- **Corpo da Requisição**:
-  - `CategoriaDTO` : Objeto contendo os dados atualizados da categoria.
-  - Exemplo de Requisição:
-    ```json
-    {
-      "nome": "Álgebra Avançada"
-    }
-    ```
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    {
-      "id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557",
-      "nome": "Álgebra Avançada"
-    }
-    ```
-    ## Questao
-
-### POST /manage/question
-
-- **Descrição**: Cria uma nova questão.
-- **Corpo da Requisição**:
-  - `QuestaoDTO`: Objeto contendo os dados da questão.
-  - Exemplo de Requisição:
-    ```json
-    {
-      "titulo": "Qual é a raiz quadrada de 16?",
-      "enunciado": "Calcule a raiz quadrada de 16.",
-      "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
-      "dificuldade": 1,
-      "alternativa": [
-        {"resposta": "2", "correta": false},
-        {"resposta": "4", "correta": true},
-        {"resposta": "8", "correta": false}
-      ],
-      "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557"}]
-    }
-    ```
-- **Resposta**:
-  - Status: 201 Created
-  - Corpo da Resposta:
-    ```json
-    {
-      "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
-      "titulo": "Qual é a raiz quadrada de 16?",
-      "enunciado": "Calcule a raiz quadrada de 16.",
-      "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
-      "dificuldade": 1,
-      "alternativa": [
-        {"resposta": "2", "correta": false},
-        {"resposta": "4", "correta": true},
-        {"resposta": "8", "correta": false}
-      ],
-      "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
-    }
-    ```
-
-### GET /manage/question/{id_questao}
-
-- **Descrição**: Retorna uma questão pelo ID.
-- **Parâmetros**:
-  - `id_questao` (UUID): ID da questão.
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    {
-      "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
-      "titulo": "Qual é a raiz quadrada de 16?",
-      "enunciado": "Calcule a raiz quadrada de 16.",
-      "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
-      "dificuldade": 1,
-      "alternativa": [
-        {"resposta": "2", "correta": false},
-        {"resposta": "4", "correta": true},
-        {"resposta": "8", "correta": false}
-      ],
-      "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
-    }
-    ```
-
-### GET /manage/question
-
-- **Descrição**: Retorna todas as questões.
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    [
-      {
-        "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
-        "titulo": "Qual é a raiz quadrada de 16?",
-        "enunciado": "Calcule a raiz quadrada de 16.",
-        "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
-        "dificuldade": 1,
-        "alternativa": [
-          {"resposta": "2", "correta": false},
-          {"resposta": "4", "correta": true},
-          {"resposta": "8", "correta": false}
-        ],
-        "resposta_correta": "4",
-        "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
-      }
-    ]
-    ```
-
-### GET /manage/question/category/{id_categoria}
-
-- **Descrição**: Retorna questões por categoria.
-- **Parâmetros**:
-  - `id_categoria` (UUID): ID da categoria.
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    [
-      {
-        "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
-        "titulo": "Qual é a raiz quadrada de 16?",
-        "enunciado": "Calcule a raiz quadrada de 16.",
-        "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
-        "dificuldade": 1,
-        "alternativa": [
-          {"resposta": "2", "correta": false},
-          {"resposta": "4", "correta": true},
-          {"resposta": "8", "correta": false}
-        ],
-        "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
-      }
-    ]
-    ```
-
-### GET /manage/question/category/dificuldade
-
-- **Descrição**: Retorna questões por categoria e dificuldade.
-- **Parâmetros**:
-  - `id_categoria` (UUID): ID da categoria.
-  - `dificuldade` (int): Nível de dificuldade da questão.
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    [
-      {
-        "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
-        "titulo": "Qual é a raiz quadrada de 16?",
-        "enunciado": "Calcule a raiz quadrada de 16.",
-        "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
-        "dificuldade": 1,
-        "alternativa": [
-          {"resposta": "2", "correta": false},
-          {"resposta": "4", "correta": true},
-          {"resposta": "8", "correta": false}
-        ],
-        "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
-      }
-    ]
-    ```
-
-### GET /manage/question/category/dificuldade/random
-
-- **Descrição**: Retorna questões aleatórias por categoria e dificuldade.
-- **Parâmetros**:
-  - `id_categoria` (UUID): ID da categoria.
-  - `dificuldade` (int): Nível de dificuldade da questão.
-- **Resposta**:
-  - Status: 200 OK
-  - Corpo da Resposta:
-    ```json
-    [
-      {
-        "id_questao": "3d9f2350-7530-4918-a05b-32b4da555559",
-        "titulo": "Qual é a raiz quadrada de 16?",
-        "enunciado": "Calcule a raiz quadrada de 16.",
-        "imagem": "https://example.com/imagens/raiz-quadrada-16.jpg",
-        "dificuldade": 1,
-        "alternativa": [
-          {"resposta": "2", "correta": false},
-          {"resposta": "4", "correta": true},
-          {"resposta": "8", "correta": false}
-        ],
-        "categoria": [{"id_categoria": "1b7f2350-7530-4918-a05b-32b4da555557", "nome": "Matemática"}]
-      }
-    ]
-    ```
-
-    ## Licença
-
-    Este projeto está licenciado sob a Licença Apache 2.0. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob a Licença Apache 2.0. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 
